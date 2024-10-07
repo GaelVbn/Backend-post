@@ -8,16 +8,4 @@
 #     "password": "John@123"
 # }
 
-POST http://localhost:3000/create-blog
-Content-Type: application/json
-Authorization: Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDNkNjA2Zjg0NDI2NTExNDIzNzJmYyIsImlhdCI6MTcyODMwNDY0Nn0.ulm4Tuuh5tdgSH3wGsVgkaRUaT6ENtCZ4UBuyPxtB9s
-
-{
-    "title": "test title",
-    "banner": "https://example.com/image-url",
-    "des": " this is a short des",
-    "content": {
-        "blocks": [1, 2]
-    },
-    "tags": ["tag1", "tags2"]
-}
+GET http://localhost:3000/latest-blogs
