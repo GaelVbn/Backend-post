@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import cors from "cors";
 import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
+import aws from "aws-sdk";
 
 import { readFile } from "fs/promises";
 
@@ -37,6 +38,25 @@ mongoose.connect(process.env.DB_LOCATION, {
   autoIndex: true,
 });
 
+// setting up s3 bucket
+const s3 = new aws.S3({
+  region: "eu-north-1",
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
+const generateUploadURL = async () => {
+  const date = new Date();
+  const imageName = `${nanoid()}-${date.getTime()}.jpeg`;
+
+  return await s3.getSignedUrlPromise("putObject", {
+    Bucket: "anitaposts",
+    Key: imageName,
+    Expires: 1000,
+    ContentType: "image/jpeg",
+  });
+};
+
 const formatDatatoSend = (user) => {
   const access_token = jwt.sign(
     { id: user._id },
@@ -60,6 +80,17 @@ const generateUsername = async (email) => {
 
   return username;
 };
+
+// upload image url route
+
+server.get("/get-upload-url", (req, res) => {
+  generateUploadURL()
+    .then((url) => res.status(200).json({ uploadURL: url }))
+    .catch((err) => {
+      console.log(err.message);
+      return res.status(500).json(err.message);
+    });
+});
 
 server.post("/signup", (req, res) => {
   const { fullname, email, password } = req.body;
