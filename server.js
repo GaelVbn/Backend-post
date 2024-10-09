@@ -626,7 +626,7 @@ server.post("/get-blog-comments", (req, res) => {
 
   let maxLimit = 5;
 
-  Comment.find({ blog_id, isReady: false })
+  Comment.find({ blog_id, isReply: false })
     .populate(
       "commented_by",
       "personal_info.username personal_info.fullname personal_info.profile_img"
