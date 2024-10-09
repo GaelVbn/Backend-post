@@ -8,9 +8,16 @@
 #     "password": "John@123"
 # }
 
+# POST http://localhost:3000/get-blog
+# Content-Type: application/json
+
+# {
+#     "blog_id": "Je-veux-vous-dire-que-j-ai-reussi5DpzW_IXHugnhMG5-oswn"
+# }
+
 POST http://localhost:3000/get-profile
 Content-Type: application/json
 
 {
-    "username": "gael.vbn"
+    "username": "Anita"
 }
