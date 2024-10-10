@@ -8,6 +8,23 @@
 #     "password": "John@123"
 # }
 
+# POST http://localhost:3000/change-password
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDNkNjA2Zjg0NDI2NTExNDIzNzJmYyIsImlhdCI6MTcyODU2OTE2Mn0.qYvKa9g-Dcc5wzippRV4ILyBLMSMPpZYpRcAj0YSxUs
+
+# {
+#     "currentPassword": "John@123",
+#     "newPassword": "John@1234"
+# }
+
+# POST http://localhost:3000/signin
+# Content-Type: application/json
+
+# {
+#     "email": "john2@gmail.com",
+#     "password": "John@123"
+# }
+
 # POST http://localhost:3000/get-blog
 # Content-Type: application/json
 
@@ -15,9 +32,9 @@
 #     "blog_id": "Je-veux-vous-dire-que-j-ai-reussi5DpzW_IXHugnhMG5-oswn"
 # }
 
-POST http://localhost:3000/get-profile
-Content-Type: application/json
+# POST http://localhost:3000/get-profile
+# Content-Type: application/json
 
-{
-    "username": "Anita"
-}
+# {
+#     "username": "Anita"
+# }
